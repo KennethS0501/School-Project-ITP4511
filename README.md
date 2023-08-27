@@ -1,6 +1,6 @@
 # ITP4511 Assignment
 **Topic:**
-Think about what function to do according to the scenario, and use the MVC model of JSP to write a Website
+Think about what function to do according to the scenario, and use the MVC model of JSP to make a Website
 ## Scenario Example
 The system should record the procedures involved in a typical venue booking scenario. Members will use the system to create a guest list (including names and email addresses) and submit booking requests (with details such as the date, time, guest list, and a notification template for guest invitations) for the available venues.
 They can book multiple sessions and venues with a single request. After receiving the booking requests, the person in charge of the venue will receive a notification to check and reserve the venue for 24 hours while using the system. The booking records will then be updated, and the results, along with the booking fee, will be notified to the member. Once the member has settled the payment and uploaded the receipt to the system, the person in charge of the venue will receive a notification to confirm the booking request, and the member and guests will receive notifications as well.
