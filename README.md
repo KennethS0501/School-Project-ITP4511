@@ -14,7 +14,7 @@ Netbean 16
 JDK 1.8
 Database: XAMPP database
 
-## (Allow me to use Chinese to avoid misunderstanding)
+## The work i do: (Allow me to use Chinese to avoid misunderstanding)
 - 全部的UI
 - MVC model的框架構建，使用Servlet，Tag，Bean搭一個通用的骨架，之後只要複製骨架再去填空就可以完成一個Function
 - Member和Senior Management的Functions
