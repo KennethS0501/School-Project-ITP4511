@@ -24,4 +24,5 @@ Database: XAMPP database
 - Member和Senior Management的Functions
 
 **Demo Video**
-Process...
+
+Processing ...
