@@ -25,4 +25,4 @@ Database: XAMPP database
 
 **Demo Video**
 
-Processing ...
+https://drive.google.com/file/d/1UlsjgTnBaqtRzxJtm6K_l9F7jdVbJdUY/view?usp=drive_link
