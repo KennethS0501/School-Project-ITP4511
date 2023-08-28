@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -18,7 +17,14 @@
         <link rel="stylesheet" href="../../assets/css/styles.css">
         <link rel="stylesheet" href="../../assets/css/Table-with-search.css">
     </head>
+    <script src="../../assets/js/jquery-3.6.4.min.js"></script>
+    <script>
+        var msg = "${param.message}";
 
+        if (msg !== ""){
+            alert(msg);
+        }
+    </script>
     <body>
         <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="height: 27px;background: #cccccc;">
             <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -58,58 +64,20 @@
                     <div class="col-md-4 col-xl-8" style="padding-left: 43px;">
                         <div style="text-align:center;">
                             <h2 class="divider-style" style="margin-top: -1px;"><span>Create Guest List<br></span></h2>
-                        </div><dl class="row">
+                        </div>
+                        <form action="GuestList" method="post">
+                        <dl class="row">
                             <dt class="col-sm-0">Guest List Name:</dt>
-                            <dd class="col-sm-9"><input type="text"></dd>
+                            <dd class="col-sm-9"><input type="text" name="name"></dd>
                         </dl><div class="form-group pull-right">
                         </div>
                         <span class="counter pull-right"></span>
-                        <table class="table table-hover table-bordered results">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Delete</th>
-                                </tr>
-                                <tr class="warning no-result">
-                                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Balázs Barta</td>
-                                    <td>29</td>
-                                    <td><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-bottom: 0px">Delete</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Dániel Nagy</td>
-                                    <td>Graphic Designer</td>
-                                    <td><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-bottom: 0px">Delete</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Szilárd Sebők</td>
-                                    <td>Software Developer</td>
-                                    <td><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-bottom: 0px">Delete</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Sándor Fekete</td>
-                                    <td>Front-end Developer</td>
-                                    <td><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-bottom: 0px">Delete</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h2 class="divider-style" style="margin-top: -1px;text-align: center;"><span>Add Guest<br></span></h2>
-                        <form style="text-align: left;"><input class="form-control" type="text" style="width: 315px;" placeholder="Name"><input class="form-control" type="number" placeholder="Email" style="margin-top: 10px;width: 315px;"><button class="btn btn-primary" type="button" style="margin-top: 10px;">Add Guest</button></form>
-                        <h2
-                            class="divider-style" style="margin-top: -1px;text-align: center;"><span>Edit Guest<br></span></h2>
-                        <form style="text-align: left;"><input class="form-control" type="text" style="width: 315px;" placeholder="Id"><input class="form-control" type="number" placeholder="Name" style="margin-top: 10px;width: 315px;"><input class="form-control" type="number" placeholder="Email"
-                                                                                                                                                                                                        style="margin-top: 10px;width: 315px;"><button class="btn btn-primary" type="button" style="margin-top: 10px;">Edit Guest</button></form><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button"
-                                                                                                                                                                         style="width: 213px;text-align: center;">Add Guest List</button></div>
+                        <jsp:useBean id="userInfo" class="ict.bean.User" scope="session"/>
+                        <input type="hidden" name="memberId" value="<jsp:getProperty name="userInfo" property="id" />">
+                        <input type="hidden" name="action" value="AddGuestList">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="submit" style="width: 213px;text-align: center;">Add Guest List</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -117,7 +85,7 @@
         <script src="../../assets/js/jquery.min.js"></script>
         <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="../../assets/js/Gruntfile.js"></script>
-        <script src="../../assets/js/jquery-3.6.4.min.js"></script>
+        
         <script src="../../assets/js/jquery.maphilight.min.js"></script>
         <script src="../../assets/js/Table-with-search.js"></script>
     </body>

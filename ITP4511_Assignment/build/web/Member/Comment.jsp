@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -18,7 +17,13 @@
         <link rel="stylesheet" href="../assets/css/styles.css">
         <link rel="stylesheet" href="../assets/css/Table-with-search.css">
     </head>
+    <script>
+        var msg = "${param.message}";
 
+        if (msg !== "") {
+            alert(msg);
+        }
+    </script>
     <body>
         <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="height: 27px;background: #cccccc;">
             <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -64,15 +69,18 @@
                                     <div class="col-lg-12 mx-auto">
                                         <div class="card rounded shadow border-0">
                                             <div class="card-body p-5 bg-white rounded">
-                                                <dt class="col-sm-12" style="font-size: 18px;">Booking Order ID:</dt>
-                                                <dd class="col-sm-12" style="font-size: 20px;">1</dd>
-
-                                                <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px">Comment:</dt>
-                                                <dd class="col-sm-12" style="font-size: 18px;"><textarea cols="40"></textarea></dd>
-
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-left:42%; margin-right:40%; width:100px; height: 40px; font-size: 18px; margin-top: 20px"><b>Submit</b></button>
+                                                <form action="Comment" method="get">
+                                                    <dt class="col-sm-12" style="font-size: 18px;">Booking Order ID:</dt>
+                                                    <dd class="col-sm-12" style="font-size: 20px;">${param.index}</dd>
+                                                    <input type="hidden" name="memberId" value="${sessionScope.userInfo.getId()}"/>
+                                                    <input type="hidden" name="confirmBookingRecordIndex" value="${param.index}"/>
+                                                    <input type="hidden" name="action" value="InsertComment" />
+                                                    <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px">Comment:</dt>
+                                                    <dd class="col-sm-12" style="font-size: 18px;">
+                                                        <textarea cols="40" name="comment"></textarea></dd>
+                                                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="submit" style="margin-left:42%; margin-right:40%; width:100px; height: 40px; font-size: 18px; margin-top: 20px"><b>Submit</b></button>
+                                                </form>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>

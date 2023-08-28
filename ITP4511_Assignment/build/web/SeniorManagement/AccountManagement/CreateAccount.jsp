@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@taglib uri="/WEB-INF/tlds/roles.tld" prefix="ict" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -18,6 +21,14 @@
         <link rel="stylesheet" href="../../assets/css/styles.css">
         <link rel="stylesheet" href="../../assets/css/Table-with-search.css">
     </head>
+
+    <script>
+        var msg = "${param.message}";
+
+        if (msg !== ""){
+            alert(msg);
+        }
+    </script>
 
     <body>
         <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="height: 27px;background: #cccccc;">
@@ -63,26 +74,26 @@
                                     <div class="col-lg-12 mx-auto">
                                         <div class="card rounded shadow border-0">
                                             <div class="card-body p-5 bg-white rounded">
-                                                <dt class="col-sm-12" style="font-size: 18px;">Account name:</dt>
-                                                <dd class="col-sm-12" style="font-size: 20px;"><input type="text"></dd>
+                                                <form action="Account" method="post">
+                                                    <dt class="col-sm-12" style="font-size: 18px;">Account name:</dt>
+                                                    <dd class="col-sm-12" style="font-size: 20px;"><input type="text" name="name" required></dd>
 
-                                                <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px">Account email:</dt>
-                                                <dd class="col-sm-12" style="font-size: 18px;"><input type="text"></dd>
+                                                    <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px">Account email:</dt>
+                                                    <dd class="col-sm-12" style="font-size: 18px;"><input type="text" name="email" required></dd>
 
-                                                <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px">Account password:</dt>
-                                                <dd class="col-sm-12" style="font-size: 18px;"><input type="text"></dd>
+                                                    <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px">Account password:</dt>
+                                                    <dd class="col-sm-12" style="font-size: 18px;"><input type="text" name="pwd" required></dd>
 
-
-                                                <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px" >Account role:</dt>
-                                                <dd class="col-sm-12" style="font-size: 18px;">
-                                                    <select>
-                                                        <option></option>
-                                                    </select>
-                                                </dd>
-
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-left:42%; margin-right:40%; width:100px; height: 40px; font-size: 18px; margin-top: 20px"><b>Submit</b></button>
+                                                    <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px" >Account role:</dt>
+                                                    <dd class="col-sm-12" style="font-size: 18px;">
+                                                        <select name="role">
+                                                            <ict:showRole tagType="show1" />
+                                                        </select>
+                                                    </dd>
+                                                    <input type="hidden" name="action" value="CreateAccount">
+                                                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="submit" style="margin-left:42%; margin-right:40%; width:100px; height: 40px; font-size: 18px; margin-top: 20px"><b>Submit</b></button>
+                                                </form>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>

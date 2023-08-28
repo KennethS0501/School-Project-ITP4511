@@ -7,7 +7,6 @@ package ict.db;
 import ict.bean.MemberBean;
 import ict.bean.StaffBean;
 import ict.bean.User;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,8 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -94,6 +91,7 @@ public class UserDB {
             rs = pStmnt.executeQuery();
 
             while (rs.next()) {
+                member.setId(rs.getInt("id"));
                 member.setEmail(rs.getString("email"));
                 member.setName(rs.getString("name"));
             }
@@ -155,18 +153,16 @@ public class UserDB {
     public String getUserType(String email) {
         String type = "";
         ArrayList<StaffBean> staffs = queryStaffList();
-        ArrayList<MemberBean> members = queryMemberList();
+        ArrayList<User> members = queryMemberList();
 
         for (StaffBean staff : staffs) {
-
             if (email.equals(staff.getEmail())) {
                 type = "staff";
-
                 break;
             }
         }
 
-        for (MemberBean member : members) {
+        for (User member : members) {
             if (email.equals(member.getEmail())) {
                 type = "member";
                 break;
@@ -195,7 +191,6 @@ public class UserDB {
                 staff.setEmail(rs.getString("email"));
                 staff.setName(rs.getString("name"));
                 staff.setRole(rs.getString("role"));
-
                 staffs.add(staff);
             }
 
@@ -214,10 +209,10 @@ public class UserDB {
         return staffs;
     }
 
-    public ArrayList<MemberBean> queryMemberList() {
+    public ArrayList<User> queryMemberList() {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
-        ArrayList<MemberBean> members = new ArrayList<MemberBean>();
+        ArrayList<User> members = new ArrayList<User>();
         try {
             cnnct = getConnection();
             String preQueryStatement = "SELECT * FROM member";
@@ -228,15 +223,9 @@ public class UserDB {
 
             while (rs.next()) {
                 MemberBean member = new MemberBean();
-
-                //pan
                 member.setId(rs.getInt("id"));
-                member.setBlock(rs.getInt("block"));
-                //pan
-
-                member.setName(rs.getString("name"));
                 member.setEmail(rs.getString("email"));
-
+                member.setName(rs.getString("name"));
                 members.add(member);
             }
 
@@ -261,7 +250,7 @@ public class UserDB {
         ArrayList<User> users = new ArrayList<User>();
         try {
             cnnct = getConnection();
-            String preQueryStatement = "SELECT email, m.name, r.name as role "
+            String preQueryStatement = "SELECT email, m.name, r.name as role, id_role "
                     + "FROM member m "
                     + "INNER JOIN role r on r.id = m.id_role";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
@@ -274,10 +263,11 @@ public class UserDB {
                 user.setEmail(rs.getString("email"));
                 user.setName(rs.getString("name"));
                 user.setRole(rs.getString("role"));
+                user.setRoleId(rs.getInt("id_role"));
                 users.add(user);
             }
 
-            preQueryStatement = "SELECT email, s.name, r.name as role "
+            preQueryStatement = "SELECT email, s.name, r.name as role, id_role "
                     + "FROM staff s "
                     + "INNER JOIN role r on r.id = s.id_role";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
@@ -289,6 +279,7 @@ public class UserDB {
                 user.setEmail(rs.getString("email"));
                 user.setName(rs.getString("name"));
                 user.setRole(rs.getString("role"));
+                user.setRoleId(rs.getInt("id_role"));
                 users.add(user);
             }
 
@@ -307,49 +298,36 @@ public class UserDB {
         return users;
     }
 
-    public void Register(String name, String email, String password, String Opassword) throws SQLException {
+    public String queryStaffNameById(int id) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
-
         try {
             cnnct = getConnection();
-            String preQueryStatement = "SELECT email "
-                    + "FROM member "
-                    + "where email =?";
-
+            String preQueryStatement = "SELECT name "
+                                    + "FROM staff "
+                                    + "WHERE id=?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            pStmnt.setString(1, email);
+            pStmnt.setInt(1, id);
+
             ResultSet rs = null;
             rs = pStmnt.executeQuery();
-            boolean flag = true;
-            if (rs.next()) {
-                flag = false;
+
+            while (rs.next()) {
+                return rs.getString("name");
             }
-            if (flag) {
 
-                preQueryStatement = "Insert into member ( name,email,password,id_role,block)"
-                        + "values (?,?,?,?,?) ";
+            pStmnt.close();
+            cnnct.close();
 
-                pStmnt = cnnct.prepareStatement(preQueryStatement);
-                pStmnt.setString(1, name);
-                pStmnt.setString(2, email);
-                pStmnt.setString(3, password);
-                pStmnt.setString(4, "1");
-                pStmnt.setString(5, "0");
-                pStmnt.executeUpdate();
-
-                pStmnt.close();
-                cnnct.close();
-
-            }
         } catch (SQLException ex) {
             while (ex != null) {
                 ex.printStackTrace();
                 ex = ex.getNextException();
             }
         } catch (IOException ex) {
-            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
 
+        return "null";
     }
 }

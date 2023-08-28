@@ -4,7 +4,7 @@
  */
 package ict.servlet;
 
-import ict.db.UserDB;
+import ict.db.UserDB1;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -25,13 +25,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Register", urlPatterns = {"/Register"})
 public class RegisterController extends HttpServlet {
 
-    private UserDB userDB;
+    private UserDB1 userDB;
 
     public void init() {
         String dbUser = this.getServletContext().getInitParameter("dbUser");
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-        userDB = new UserDB(dbUrl, dbUser, dbPassword);
+        userDB = new UserDB1(dbUrl, dbUser, dbPassword);
     }
 
     /**

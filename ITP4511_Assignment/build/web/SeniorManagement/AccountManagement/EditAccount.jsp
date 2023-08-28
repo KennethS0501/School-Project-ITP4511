@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="/WEB-INF/tlds/users.tld" prefix="ict" %>
+<%@taglib uri="/WEB-INF/tlds/users.tld" prefix="user" %>
+<%@taglib uri="/WEB-INF/tlds/roles.tld" prefix="role" %>
 <!DOCTYPE html>
 <html>
 
@@ -20,7 +21,13 @@
         <link rel="stylesheet" href="../../assets/css/styles.css">
         <link rel="stylesheet" href="../../assets/css/Table-with-search.css">
     </head>
+    <script>
+        var msg = "${param.message}";
 
+        if (msg !== ""){
+            alert(msg);
+        }
+    </script>
     <body>
         <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="height: 27px;background: #cccccc;">
             <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -76,11 +83,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <ict:showUser tagType="show" />
+                                <user:showUser tagType="show1" />
                             </tbody>
                         </table>
-                        <form><input class="form-control" type="text" style="width: 200px;" placeholder="id"><input class="form-control" type="number" placeholder="Name" style="margin-top: 10px;width: 200px;"><input class="form-control" type="number" placeholder="Email"
-                                                                                                                                                                                                        style="margin-top: 10px;width: 200px;"><input class="form-control" type="number" placeholder="Role" style="margin-top: 10px;width: 200px;"><button class="btn btn-primary" type="button" style="margin-top: 10px;">Edit</button></form>
+                        <form action="Account" method="get">
+                            <input class="form-control" name="id" type="number" style="width: 200px;" placeholder="id" min="1" required>
+                            <input class="form-control" name="name" type="text" placeholder="Name" style="margin-top: 10px;width: 200px;" required>
+                            <input class="form-control" name="email" type="text" placeholder="Email" style="margin-top: 10px;width: 200px;" required><br/>
+                            <input name="action" type="hidden" value="EditAccount">
+                            <select name="role">
+                                <role:showRole tagType="show1" />
+                            </select><br/>
+                            <button class="btn btn-primary" type="submit" style="margin-top: 10px;">Edit</button>
+                        </form>
                     </div>
                 </div>
             </div>

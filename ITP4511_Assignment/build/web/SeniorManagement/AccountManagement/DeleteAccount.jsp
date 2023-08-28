@@ -20,7 +20,13 @@
         <link rel="stylesheet" href="../../assets/css/styles.css">
         <link rel="stylesheet" href="../../assets/css/Table-with-search.css">
     </head>
+    <script>
+        var msg = "${param.message}";
 
+        if (msg !== ""){
+            alert(msg);
+        }
+    </script>
     <body>
         <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="height: 27px;background: #cccccc;">
             <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -76,10 +82,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <ict:showUser tagType="show" />
+                                <ict:showUser tagType="show1" />
                             </tbody>
                         </table>
-                        <form><input class="form-control" type="text" style="width: 200px;" placeholder="Id"><button class="btn btn-primary" type="button" style="margin-top: 10px;">Delete</button></form>
+                        <form action="Account" method="post">
+                            <input class="form-control" type="number" min="1" style="width: 200px;" name="id" placeholder="Id">
+                            <input type="hidden" name="action" value="DeleteAccount">
+                            <button class="btn btn-primary" type="submit" style="margin-top: 10px;">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>

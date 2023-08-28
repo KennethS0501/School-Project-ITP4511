@@ -21,9 +21,8 @@
         <link rel="stylesheet" href="../../assets/css/Table-with-search.css">
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
-    <% 
-    if( session.getAttribute("Error") != null && session.getAttribute("Error") != "")
-    {%> 
+    <%
+        if (session.getAttribute("Error") != null && session.getAttribute("Error") != "") {%> 
     <script>
 
 
@@ -120,11 +119,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <ict:showBookOrder tagType="ConfirmOrDecline"/>
+                            <ict:showBookOrder tagType="ConfirmOrDecline"/>
                             </tbody>
                         </table>
                         <form  method="post" action="EditBookingOrder">
-                            <jsp:useBean id="userInfo" class="ict.bean.StaffBean" scope="session"/>
+                            <jsp:useBean id="userInfo" class="ict.bean.StaffBean1" scope="session"/>
                             <input type="hidden" name="StaffName" value="<jsp:getProperty name="userInfo" property="name" />" />
                             <input type="hidden" name="action" value="ConfirmOrDecline"/>
                             <input class="form-control" name="OrderId" type="number" style="width: 200px;" placeholder="ID">

@@ -1,6 +1,8 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/WEB-INF/tlds/guestLists.tld" prefix="guestList" %>
+
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -46,84 +48,68 @@
                     <div class="col-md-8 col-xl-4">
                         <div class="row">
                             <div class="col-lg-4 col-xl-12" style="margin-left: 99px;width: 356px;">
-                               <div class="list-group">
+                                <div class="list-group">
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../Account.jsp';" style="width: 250px;height: 49px;">Account Details</a>
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../Reminder.jsp';"  style="width: 250px;">Reminder</a>
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../BookingRecordFunction/BookingRecordManagement.jsp';"  style="width: 250px;">Booking Records</a>
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = 'GuestListManagement.jsp';"  style="width: 250px;">Guest List Management</a>
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../CommentSelectBooking.jsp';" style="width: 250px;">Comment</a></div>            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-8" style="padding-left: 43px;">
+                        <div style="text-align:center;">
+                            <h2 class="divider-style" style="margin-top: -1px;"><span>Guest List Detail<br></span></h2>
+                        </div><dl class="row">
+                            <dt class="col-sm-0">Guest List Id:</dt>
+                            <dd class="col-sm-10">${param.id}</dd>
+                        </dl><div class="form-group pull-right">
+                            <input type="text" class="search form-control" placeholder="What you looking for?">
+                        </div>
+                        <span class="counter pull-right"></span>
+                        <table class="table table-hover table-bordered results">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                </tr>
+                                <tr class="warning no-result">
+                                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <guestList:showGuestList memberId="${sessionScope.userInfo.getId()}" tagType="ShowDetailByTable"  guestListIndex="${param.id}" />
+                            </tbody>
+                        </table>
+                        <h2 class="divider-style" style="margin-top: -1px;text-align: center;"><span>Add Guest<br></span></h2>
+                        <form action="GuestListDetail" method="get">
+                            <input type="hidden" name="action" value="AddGuest">
+                            <input type="hidden" name="guestListIndex" value="${param.id}">
+                            <input type="hidden" name="memberId" value="${sessionScope.userInfo.getId()}">
+                            <input class="form-control" type="text" style="width: 315px;" placeholder="Name" name="name">
+                            <input class="form-control" type="text" placeholder="Email" style="margin-top: 10px;width: 315px;" name="email">
+                            <button class="btn btn-primary" type="submit" style="margin-top: 10px;">Add</button>
+                        </form>
+                        <h2 class="divider-style" style="margin-top: -1px;text-align: center;"><span>Delete Guest<br></span></h2>
+                        <form action="GuestListDetail" method="get">
+                            <input type="hidden" name="action" value="DeleteGuest">
+                            <input type="hidden" name="guestListIndex" value="${param.id}">
+                            <input type="hidden" name="memberId" value="${sessionScope.userInfo.getId()}">
+                            <input class="form-control" type="number" style="width: 315px;" placeholder="Id" name="id">
+                            <button class="btn btn-primary" type="submit" style="margin-top: 10px;">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-xl-8" style="padding-left: 43px;">
-                <div style="text-align:center;">
-                    <h2 class="divider-style" style="margin-top: -1px;"><span>Guest List Detail<br></span></h2>
-                </div><dl class="row">
-                    <dt class="col-sm-0">Guest List Id:</dt>
-                    <dd class="col-sm-10">?</dd>
-
-                    <dt class="col-sm-0">Guest List Name:</dt>
-                    <dd class="col-sm-9">?</dd>
-                </dl><div class="form-group pull-right">
-                    <input type="text" class="search form-control" placeholder="What you looking for?">
-                </div>
-                <span class="counter pull-right"></span>
-                <table class="table table-hover table-bordered results">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Delete</th>
-                        </tr>
-                        <tr class="warning no-result">
-                            <td colspan="4"><i class="fa fa-warning"></i> No result</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Balázs Barta</td>
-                            <td>29</td>
-                            <td><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-bottom: 0px">Delete</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Dániel Nagy</td>
-                            <td>Graphic Designer</td>
-                            <td><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-bottom: 0px">Delete</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Szilárd Sebők</td>
-                            <td>Software Developer</td>
-                            <td><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-bottom: 0px">Delete</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Sándor Fekete</td>
-                            <td>Front-end Developer</td>
-                            <td><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-bottom: 0px">Delete</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h2 class="divider-style" style="margin-top: -1px;text-align: center;"><span>Add Guest<br></span></h2>
-                <form><input class="form-control" type="text" style="width: 315px;" placeholder="Name"><input class="form-control" type="number" placeholder="Email" style="margin-top: 10px;width: 315px;"><button class="btn btn-primary" type="button" style="margin-top: 10px;">Add</button></form>
-                <h2
-                    class="divider-style" style="margin-top: -1px;text-align: center;"><span>Edit Guest<br></span></h2>
-                <form><input class="form-control" type="text" style="width: 315px;" placeholder="Id"><input class="form-control" type="number" placeholder="Name" style="margin-top: 10px;width: 315px;"><input class="form-control" type="number" placeholder="Email"
-                                                                                                                                                                                                        style="margin-top: 10px;width: 315px;"><button class="btn btn-primary" type="button" style="margin-top: 10px;">Edit</button></form>
-            </div>
         </div>
-    </div>
-</div>
-<%@include file="../../footer.jsp" %>
-<script src="../../assets/js/jquery.min.js"></script>
-<script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../../assets/js/Gruntfile.js"></script>
-<script src="../../assets/js/jquery-3.6.4.min.js"></script>
-<script src="../../assets/js/jquery.maphilight.min.js"></script>
-<script src="../../assets/js/Table-with-search.js"></script>
-</body>
+        <%@include file="../../footer.jsp" %>
+        <script src="../../assets/js/jquery.min.js"></script>
+        <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/Gruntfile.js"></script>
+        <script src="../../assets/js/jquery-3.6.4.min.js"></script>
+        <script src="../../assets/js/jquery.maphilight.min.js"></script>
+        <script src="../../assets/js/Table-with-search.js"></script>
+    </body>
 
 </html>

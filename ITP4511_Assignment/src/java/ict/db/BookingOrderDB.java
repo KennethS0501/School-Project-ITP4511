@@ -371,7 +371,7 @@ public class BookingOrderDB {
         try {
             cnnct = getConnection();
 
-            String preQueryStatement = "SELECT id From booking_record where id='" + id + "' where id='" + id + "';";
+            String preQueryStatement = "SELECT id From booking_record where id='" + id + "' ;";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             int Mid = 0;
             ResultSet rs = null;

@@ -1,3 +1,11 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/WEB-INF/tlds/bookingRecords.tld" prefix="bookingRecords" %>
+<%@taglib uri="/WEB-INF/tlds/venues.tld" prefix="venue" %>
+<%@taglib uri="/WEB-INF/tlds/guestLists.tld" prefix="guestList" %>
+<%@taglib uri="/WEB-INF/tlds/notiTemplates.tld" prefix="notiTemplates" %>
+<%@taglib uri="/WEB-INF/tlds/reminders.tld" prefix="reminders" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -61,44 +69,7 @@
                         </div>
                         <div class="card">
                             <div class="card-body" style="height: 233px;min-height: 500px;">
-                                <ul class="list-group">
-                                    <li class="list-group-item" style="margin-bottom:6px;">
-                                        <div class="media">
-                                            <div></div>
-                                            <div class="media-body">
-                                                <div class="media" style="overflow:visible;">
-                                                    <div></div>
-                                                    <div class="media-body" style="overflow:visible;">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <p><a href="#">Staff:</a>&nbsp;Approve your booking record ID 2<br>
-                                                                    <small class="text-muted">August 6, 2016 @ 10:35am </small></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item" style="margin-bottom:6px;">
-                                        <div class="media">
-                                            <div></div>
-                                            <div class="media-body">
-                                                <div class="media" style="overflow:visible;">
-                                                    <div></div>
-                                                    <div class="media-body" style="overflow:visible;">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <p><a href="#">Staff:</a>&nbsp;Booking Record ID 2 Check-in<br>
-                                                                    <small class="text-muted">August 6, 2016 @ 10:35am </small></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                <reminders:showNotiTemplates memberId="${userInfo.getId()}" tagType="show" />
                             </div>
                         </div>
                     </div>

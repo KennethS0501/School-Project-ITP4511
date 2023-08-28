@@ -1,3 +1,7 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/WEB-INF/tlds/venues.tld" prefix="venues" %>
+<%@taglib uri="/WEB-INF/tlds/users.tld" prefix="users" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -63,59 +67,95 @@
                                 <h4 class="card-title"><strong>Show Booking records of selected venue</strong></h4>
                                 <h6 class="text-muted card-subtitle mb-2"><strong>Show Booking records of selected venue</strong><br></h6>
                                 <ul class="list-group"></ul>
-                                <form>
-                                    <div class="field"><select class="form-control"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select>
+                                <form action="Analytic" method="get">
+                                    <div class="field">
+                                        <select class="form-control" name="venueId">
+                                            <venues:showVenue tagType="showVenueByOption" />
+                                        </select>
+                                        <label class="mb-0" for="float-input">Venue name:</label>
+                                    </div>
+                                    <input type="hidden" name="action" value="ShowBookingRecordByVenue">
+                                    <button class="btn btn-primary" type="submit"><strong>Go</strong><br></button>
+                                </form>
+                            </div>
+
+                            <form action="Analytic" method="get">    
+                                <div class="card-body" style="margin-top: 10px;border-style: solid;border-color: #dfe8ee;">
+                                    <h4 class="card-title"><strong>Show Booking rate of selected venue</strong><br></h4>
+                                    <h6 class="text-muted card-subtitle mb-2"><strong>Show Booking rate of selected venue</strong><br></h6>
+                                    <ul class="list-group"></ul>
+                                    <div class="field">
+                                        <select class="form-control" name="venueId">
+                                            <venues:showVenue tagType="showVenueByOption" />
+                                        </select>
                                         <label
                                             class="mb-0" for="float-input">Venue name:</label>
                                     </div>
-                                </form>
-                                <button class="btn btn-primary" onclick="window.location.href = 'ShowBookingRecordByVenue.jsp';"><strong>Go</strong><br></button>
-                            </div>
-                            <div class="card-body" style="margin-top: 10px;border-style: solid;border-color: #dfe8ee;">
-                                <h4 class="card-title"><strong>Show Booking rate of selected venue</strong><br></h4>
-                                <h6 class="text-muted card-subtitle mb-2"><strong>Show Booking rate of selected venue</strong><br></h6>
-                                <ul class="list-group"></ul>
-                                <form>
-                                    <div class="field"><select class="form-control"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select>
-                                        <label
-                                            class="mb-0" for="float-input">Venue name:</label>
+                                    <div>
+                                        Year <input type="radio" name="radio" value="year" checked>
+                                        <input type="number" min="1900" max="2099" step="1" value="2023" name="yearNumber" />
                                     </div>
-                                </form>
-                                <button class="btn btn-primary" onclick="window.location.href = 'BookingRateByVenue.jsp';"><strong>Go</strong><br></button>
-                            </div>
-                            <div class="card-body" style="margin-top: 10px;border-style: solid;border-color: #dfe8ee;">
-                                <h4 class="card-title"><strong>Show Booking attendance rate of selected user</strong><br></h4>
-                                <h6 class="text-muted card-subtitle mb-2"><strong>Show Booking rate of selected venue</strong><br></h6>
-                                <ul class="list-group"></ul>
-                                <form>
-                                    <div class="field"><select class="form-control"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select>
-                                        <label
-                                            class="mb-0" for="float-input">User name:</label>
+                                    <div>
+                                        Month <input type="radio" name="radio" value="month">
+                                        <input type="month" name="monthNumber"/>
                                     </div>
-                                </form>
-                                <button class="btn btn-primary" onclick="window.location.href = 'BookingAttendanceByUser.jsp';"><strong>Go</strong><br></button>
-                            </div>
-                            <div class="card-body" style="margin-top: 10px;border-style: solid;border-color: #dfe8ee;">
-                                <h4 class="card-title"><strong>Show Income Generated&nbsp;by each venue</strong><br></h4>
-                                <h6 class="text-muted card-subtitle mb-2"><strong>Show Income Generated&nbsp;by each venue</strong><br></h6>
-                                <ul class="list-group"></ul>
-                                <form>
-                                    <div class="field"></div>
-                                </form>
-                                <button class="btn btn-primary" onclick="window.location.href = 'IncomeGenerated.jsp';"><strong>Go</strong><br></button>
-                            </div>
+                                    <input type="hidden" name="action" value="ShowBookingRateByVenue">
+                                    <button class="btn btn-primary" type="submit"><strong>Go</strong><br></button>
+                            </form>
+                        </div>
+                        <div class="card-body" style="margin-top: 10px;border-style: solid;border-color: #dfe8ee;">
+                            <h4 class="card-title"><strong>Show Booking attendance rate of selected user</strong><br></h4>
+                            <h6 class="text-muted card-subtitle mb-2"><strong>Show Booking rate of selected venue</strong><br></h6>
+                            <ul class="list-group"></ul>
+                            <form action="Analytic" method="get">    
+                                <div class="field">
+                                    <select class="form-control" name="memberId">
+                                        <users:showUser tagType="option" />
+                                    </select>
+                                    <label
+                                        class="mb-0" for="float-input">User name:</label>
+                                </div>
+                                <div>
+                                    Year <input type="radio" id="formCheck-1" name="radio" checked value="year">
+                                    <input type="number" min="1900" max="2099" step="1" value="2023" name="yearNumber" />
+                                </div>
+                                <div>
+                                    Month <input type="radio" id="formCheck-1" name="radio" value="month">
+                                    <input type="month" min="1" max="12" step="1" value="1" name="monthNumber"/>
+                                </div>
+                                <input type="hidden" name="action" value="ShowAttendanceRateByUser">
+                                <button class="btn btn-primary" type="submit"><strong>Go</strong><br></button>
+                            </form>
+                        </div>
+                        <div class="card-body" style="margin-top: 10px;border-style: solid;border-color: #dfe8ee;">
+                            <h4 class="card-title"><strong>Show Income Generated&nbsp;by each venue</strong><br></h4>
+                            <h6 class="text-muted card-subtitle mb-2"><strong>Show Income Generated&nbsp;by each venue</strong><br></h6>
+                            <ul class="list-group"></ul>
+                            <form action="Analytic" method="get">    
+                                <div>
+                                    Year <input type="radio" id="formCheck-1" name="radio" checked value="year">
+                                    <input type="number" min="1900" max="2099" step="1" value="2023" name="yearNumber" />
+                                </div>
+                                <div>
+                                    Month <input type="radio" id="formCheck-1" name="radio" value="month">
+                                    <input type="month" min="1" max="12" step="1" value="1" name="monthNumber"/>
+                                </div>
+                                <input type="hidden" name="action" value="showIncome">
+                                <button class="btn btn-primary" type="submit"><strong>Go</strong><br></button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <%@include file="../../footer.jsp" %>
-        <script src="../../assets/js/jquery.min.js"></script>
-        <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../../assets/js/Gruntfile.js"></script>
-        <script src="../../assets/js/jquery-3.6.4.min.js"></script>
-        <script src="../../assets/js/jquery.maphilight.min.js"></script>
-        <script src="../../assets/js/Table-with-search.js"></script>
-    </body>
+    </div>
+    <%@include file="../../footer.jsp" %>
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/Gruntfile.js"></script>
+    <script src="../../assets/js/jquery-3.6.4.min.js"></script>
+    <script src="../../assets/js/jquery.maphilight.min.js"></script>
+    <script src="../../assets/js/Table-with-search.js"></script>
+</body>
 
 </html>

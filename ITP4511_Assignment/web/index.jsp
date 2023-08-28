@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -120,7 +119,7 @@
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
                 </ul>
-        </div><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button">Booking Cart</button></div>
+            </div><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" onclick="location.href='BookingCart.jsp';">Booking Cart</button></div>
     </nav>
   <div class="d-flex justify-content-center">
     <h1>Venue Select</h1>
@@ -128,11 +127,11 @@
       <img class="map" src="assets/img/favpng_hong-kong-vector-map-royalty-free.png" usemap="#features">
     </div>
     <map name="features">
-      <area target="" alt="TuenMun" name="Tuen Mun" title="TuenMun" href="<%=request.getContextPath() %>/Venue.jsp" coords="69,189,55,203,78,255,172,259,210,214,171,212,158,188,96,181" shape="poly">
-      <area target="" alt="ShaTin" name="Sha Tin" title="ShaTin" href="<%=request.getContextPath() %>/Venue.jsp" coords="333,189,357,207,329,258,297,223" shape="poly">
-      <area target="" alt="TsingYi" name="Tsing Yi" title="TsingYi" href="<%=request.getContextPath() %>/Venue.jsp" coords="217,254,226,285,250,284,245,251" shape="poly">
-      <area target="" alt="ChaiWan" name="Chai Wan" title="ChaiWan" href="<%=request.getContextPath() %>/Venue.jsp" coords="362,339,370,349,364,358,354,351" shape="poly">
-      <area target="" alt="LiHuili" name="Li Huili" title="LiHuili" href="<%=request.getContextPath() %>/Venue.jsp" coords="371,297,389,297,386,315,373,316" shape="poly">
+      <area target="" alt="TuenMun" name="Tuen Mun" title="TuenMun" href="<%=request.getContextPath() %>/Venue.jsp?venueId=1" coords="69,189,55,203,78,255,172,259,210,214,171,212,158,188,96,181" shape="poly">
+      <area target="" alt="ShaTin" name="Sha Tin" title="ShaTin" href="<%=request.getContextPath() %>/Venue.jsp?venueId=3" coords="333,189,357,207,329,258,297,223" shape="poly">
+      <area target="" alt="TsingYi" name="Tsing Yi" title="TsingYi" href="<%=request.getContextPath() %>/Venue.jsp?venueId=2" coords="217,254,226,285,250,284,245,251" shape="poly">
+      <area target="" alt="ChaiWan" name="Chai Wan" title="ChaiWan" href="<%=request.getContextPath() %>/Venue.jsp?venueId=5" coords="362,339,370,349,364,358,354,351" shape="poly">
+      <area target="" alt="LiHuili" name="Li Huili" title="LiHuili" href="<%=request.getContextPath() %>/Venue.jsp?venueId=4" coords="371,297,389,297,386,315,373,316" shape="poly">
     </map>
   </div>
     <%@include file="footer.jsp" %>

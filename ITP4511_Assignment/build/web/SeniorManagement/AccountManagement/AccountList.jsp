@@ -77,7 +77,7 @@
     </tr>
   </thead>
   <tbody>
-      <ict:showUser tagType="show" />
+      <ict:showUser tagType="show1" />
   </tbody>
 </table></div>
             </div>

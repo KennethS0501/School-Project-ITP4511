@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/WEB-INF/tlds/guestLists.tld" prefix="guestList" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -68,38 +71,13 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Guest count</th>
-                                <th>Create Date</th>
                             </tr>
                             <tr class="warning no-result">
                                 <td colspan="4"><i class="fa fa-warning"></i> No result</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Balázs Barta</td>
-                                <td>29</td>
-                                <td>2023-04-12 22:11:23</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Dániel Nagy</td>
-                                <td>Graphic Designer</td>
-                                <td>Eger</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Szilárd Sebők</td>
-                                <td>Software Developer</td>
-                                <td>Budapest</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Sándor Fekete</td>
-                                <td>Front-end Developer</td>
-                                <td>Luxemburg</td>
-                            </tr>
+                            <guestList:showGuestList memberId="${sessionScope.userInfo.getId()}" tagType="ShowNameByTable"/>
                         </tbody>
                     </table></div>
             </div>

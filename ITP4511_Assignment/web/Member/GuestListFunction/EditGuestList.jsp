@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/WEB-INF/tlds/guestLists.tld" prefix="guestList" %>
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +20,13 @@
         <link rel="stylesheet" href="../../assets/css/styles.css">
         <link rel="stylesheet" href="../../assets/css/Table-with-search.css">
     </head>
+    <script>
+        var msg = "${param.message}";
 
+        if (msg !== "") {
+            alert(msg);
+        }
+    </script>
     <body>
         <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="height: 27px;background: #cccccc;">
             <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -60,55 +68,37 @@
                             <h2 class="divider-style" style="margin-top: -1px;"><span>Edit Guest List<br></span></h2>
                         </div>
                         <div class="form-group pull-right">
-                        <input type="text" class="search form-control" placeholder="What you looking for?">
-                    </div>
-                    <span class="counter pull-right"></span>
-                    <table class="table table-hover table-bordered results">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Guest count</th>
-                                <th>Create Date</th>
-                            </tr>
-                            <tr class="warning no-result">
-                                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Balázs Barta</td>
-                                <td>29</td>
-                                <td>2023-04-12 22:11:23</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Dániel Nagy</td>
-                                <td>Graphic Designer</td>
-                                <td>Eger</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Szilárd Sebők</td>
-                                <td>Software Developer</td>
-                                <td>Budapest</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Sándor Fekete</td>
-                                <td>Front-end Developer</td>
-                                <td>Luxemburg</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                        
+                            <input type="text" class="search form-control" placeholder="What you looking for?">
+                        </div>
+                        <span class="counter pull-right"></span>
+                        <table class="table table-hover table-bordered results">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                </tr>
+                                <tr class="warning no-result">
+                                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                </tr>
+                            </thead>
+                            <jsp:useBean id="userInfo" class="ict.bean.User" scope="session"/>
+                            <tbody>
+                                <guestList:showGuestList memberId="${sessionScope.userInfo.getId()}" tagType="ShowNameByTable" />
+                            </tbody>
+                        </table>
+
                         <dl class="row">
-                            <dt class="col-sm-0">Guest List ID:</dt>
-                            <dd class="col-sm-9"><input type="text"></dd>
-                            <dt class="col-sm-0">Guest List Name:</dt>
-                            <dd class="col-sm-9"><input type="text"></dd>
-                        </dl><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="width: 213px;text-align: center;">Edit Guest List</button></div>
+                            <form action="GuestList" method="post">
+                                <dt class="col-sm-0">Guest List ID:</dt>
+                                <dd class="col-sm-9"><input type="text" name="id"></dd>
+                                <dt class="col-sm-0">Guest List Name:</dt>
+                                <dd class="col-sm-9"><input type="text" name="name"></dd>
+                                <input type="hidden" name="memberId" value="${sessionScope.userInfo.getId()}">
+                                <input type="hidden" name="action" value="EditGuestList">
+                                </dl>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="submit" style="width: 213px;text-align: center;">Edit Guest List</button>
+                            </form>
+                    </div>
                 </div>
             </div>
         </div>

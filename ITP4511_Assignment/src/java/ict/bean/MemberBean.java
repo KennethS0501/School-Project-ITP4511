@@ -10,9 +10,6 @@ package ict.bean;
  */
 public class MemberBean extends User {
 
-    private int id;
-    private int block;
-
     private String name;
     private String email;
     private String role;
@@ -24,24 +21,6 @@ public class MemberBean extends User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-//Pan
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getBlock() {
-        return block;
-    }
-
-    public void setBlock(int block) {
-        this.block = block;
-    }
-//Pan
 
     public void setRole(String role) {
         this.role = role;

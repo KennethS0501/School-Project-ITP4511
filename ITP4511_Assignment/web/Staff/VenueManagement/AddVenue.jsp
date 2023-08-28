@@ -66,28 +66,28 @@
                                                 <input type="hidden" name="action" value="AddVenue" />
                                                 <div class="card-body p-5 bg-white rounded">
                                                     <dt class="col-sm-12" style="font-size: 18px;">Venue name:</dt>
-                                                    <dd class="col-sm-12" style="font-size: 20px;"><input name="VenueName" type="text"></dd>
+                                                    <dd class="col-sm-12" style="font-size: 20px;"><input name="VenueName" type="text" required="true"></dd>
 
                                                     <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px">Type:</dt>
-                                                    <dd class="col-sm-12" style="font-size: 18px;"><input name="VenueType" type="text"></dd>
+                                                    <dd class="col-sm-12" style="font-size: 18px;"><input name="VenueType" type="text" required="true"></dd>
 
                                                     <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px" >Capacity:</dt>
-                                                    <dd class="col-sm-12" style="font-size: 18px;"><input name="VenueCapacity" type="text"></dd>
+                                                    <dd class="col-sm-12" style="font-size: 18px;"><input name="VenueCapacity" type="number" required="true"></dd>
 
                                                     <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px" >Location:</dt>
-                                                    <dd class="col-sm-12" style="font-size: 18px;"><input name="VenueLocation" type="text"></dd>
+                                                    <dd class="col-sm-12" style="font-size: 18px;"><input name="VenueLocation" type="text" required="true"></dd>
 
                                                     <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px" >Description:</dt>
-                                                    <dd class="col-sm-12" style="font-size: 18px;"><input name="VenueDescription" type="text"></dd>
+                                                    <dd class="col-sm-12" style="font-size: 18px;"><input name="VenueDescription" type="text" required="true"></dd>
 
                                                     <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px" >Person-in-charge:</dt>
-                                                    <dd class="col-sm-12" style="font-size: 18px;"><input name="VenuePerson_in_charge" type="text"></dd>
+                                                    <dd class="col-sm-12" style="font-size: 18px;"><input name="VenuePerson_in_charge" type="text" required="true"></dd>
 
                                                     <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px" >Booking fee:</dt>
-                                                    <dd class="col-sm-12" style="font-size: 18px;"><input name="VenueBooking_Fee" type="number"></dd>
+                                                    <dd class="col-sm-12" style="font-size: 18px;"><input name="VenueBooking_Fee" type="number" required="true"></dd>
 
                                                     <dt class="col-sm-12" style="font-size: 18px; margin-top: 20px" >Image:</dt>
-                                                    <dd class="col-sm-12" style="font-size: 18px;"><input type="file" name="upload"></dd>
+                                                    <dd class="col-sm-12" style="font-size: 18px;"><input type="file" name="upload" required="true"></dd>
 
                                                     <button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="submit" style="margin-left:42%; margin-right:40%; width:100px; height: 40px; font-size: 18px; margin-top: 20px"><b>Add</b></button>
                                                 </div>

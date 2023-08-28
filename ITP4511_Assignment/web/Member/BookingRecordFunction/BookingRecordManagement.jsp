@@ -46,7 +46,7 @@
                     <div class="col-md-8 col-xl-4">
                         <div class="row">
                             <div class="col-lg-4 col-xl-12" style="margin-left: 99px;width: 356px;">
-                                                               <div class="list-group">
+                                <div class="list-group">
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../Account.jsp';" style="width: 250px;height: 49px;">Account Details</a>
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../Reminder.jsp';"  style="width: 250px;">Reminder</a>
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = 'BookingRecordManagement.jsp';"  style="width: 250px;">Booking Records</a>
@@ -71,6 +71,12 @@
                                 <h6 class="text-muted card-subtitle mb-2"><strong>Update guest list</strong><br></h6>
                                 <ul class="list-group"></ul>
                                 <button class="btn btn-primary" type="submit" style="width: 94px;" onclick="window.location.href = 'UpdateBookingRecord.jsp';"><strong>Go</strong><br></button>
+                            </div>
+                            <div class="card-body" style="margin-top: 10px;border-style: solid;border-color: #dfe8ee;">
+                                <h4 class="card-title"><strong>Payment Booking Record</strong><br></h4>
+                                <h6 class="text-muted card-subtitle mb-2"><strong>When staff comfirm your order, you should go here to upload paymetn receipt</strong><br></h6>
+                                <ul class="list-group"></ul>
+                                <button class="btn btn-primary" type="submit" style="width: 94px;" onclick="window.location.href = 'PaymentBooking.jsp';"><strong>Go</strong><br></button>
                             </div>
                         </div>
                     </div>

@@ -8,6 +8,10 @@ import ict.bean.MemberBean;
 import ict.bean.StaffBean;
 import ict.bean.User;
 import ict.db.UserDB;
+import ict.bean.MemberBean1;
+import ict.bean.StaffBean1;
+import ict.bean.User1;
+import ict.db.UserDB1;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,12 +29,14 @@ import javax.servlet.http.HttpSession;
 public class LoginController extends HttpServlet {
 
     private UserDB userDB;
+    private UserDB1 userDB1;
 
     public void init() {
         String dbUser = this.getServletContext().getInitParameter("dbUser");
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrl = this.getServletContext().getInitParameter("dbUrl");
         userDB = new UserDB(dbUrl, dbUser, dbPassword);
+        userDB1 = new UserDB1(dbUrl, dbUser, dbPassword);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,7 +67,6 @@ public class LoginController extends HttpServlet {
 
         if (userDB.isValidUser(email, pwd, type)) {
             HttpSession session = request.getSession(true);
-        
 
             if (type.equals("member")) {
                 User member = userDB.getMemberDetail(email);
@@ -69,18 +74,21 @@ public class LoginController extends HttpServlet {
                 targetURL = "index.jsp";
             } else if (type.equals("staff")) {
                 StaffBean staff = userDB.getStaffDetail(email);
+                StaffBean1 staff1 = userDB1.getStaffDetail(email);
                 session.setAttribute("userInfo", staff);
                 if ("Seniro_Management".equals(staff.getRole())) {
+
                     targetURL = "SeniorManagement/Account.jsp";
                 } else {
+                    System.out.println("asdasdsad");
                     //targetURL = "Senior_Management/Account.jsp";
+                    session.setAttribute("userInfo", staff1);
                     targetURL = "Staff/Account.jsp";
                 }
             }
         } else {
             targetURL = "loginError.jsp";
         }
-        
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/" + targetURL);
         rd.forward(request, response);

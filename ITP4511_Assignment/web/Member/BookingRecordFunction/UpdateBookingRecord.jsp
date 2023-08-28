@@ -1,3 +1,9 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/WEB-INF/tlds/bookingRecords.tld" prefix="bookingRecords" %>
+<%@taglib uri="/WEB-INF/tlds/venues.tld" prefix="venue" %>
+<%@taglib uri="/WEB-INF/tlds/guestLists.tld" prefix="guestList" %>
+<%@taglib uri="/WEB-INF/tlds/notiTemplates.tld" prefix="notiTemplates" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +24,13 @@
         <link rel="stylesheet" href="../../assets/css/styles.css">
         <link rel="stylesheet" href="../../assets/css/Table-with-search.css">
     </head>
+    <script>
+        var msg = "${param.message}";
 
+        if (msg !== "") {
+            alert(msg);
+        }
+    </script>
     <body>
         <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="height: 27px;background: #cccccc;">
             <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -52,70 +64,67 @@
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = 'BookingRecordManagement.jsp';"  style="width: 250px;">Booking Records</a>
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../GuestListFunction/GuestListManagement.jsp';"  style="width: 250px;">Guest List Management</a>
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../CommentSelectBooking.jsp';" style="width: 250px;">Comment</a></div>                                                                                                                                                                       
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-8" style="padding-left: 43px;">
+                        <div style="text-align:center;">
+                            <h2 class="divider-style" style="margin-top: -1px;"><span>Update Booking Record<br></span></h2>
+                        </div><div class="form-group pull-right">
+                            <input type="text" class="search form-control" placeholder="What you looking for?">
+                        </div>
+                        <span class="counter pull-right"></span>
+                        <table class="table table-hover table-bordered results">
+                            <thead>
+                                <tr>
+                                    <th >#</th>
+                                    <th>Venue</th>
+                                    <th>Guest List</th>
+                                    <th>Notification template</th>
+                                    <th>Price</th>
+                                    <th >Status</th>
+                                </tr>
+                                <tr class="warning no-result">
+                                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <bookingRecords:showBookingRecord memberId="${userInfo.getId()}" tagType="ShowUpdateBookingRecordByTable" />
+                            </tbody>
+                        </table>
+                        <h2 class="divider-style" style="margin-top: -1px;text-align: center;"><span>Change Guest List<br></span></h2>
+                        <form action="BookingRecord" method="get">
+                            <input type="hidden" name="action" value="ChangeGuestList">
+                            <input type="hidden" name="memberId" value="${sessionScope.userInfo.getId()}">
+                            <input class="form-control" type="number" style="width: 315px;" placeholder="Id" name="OrderIndex" min="1">
+                            <select name="guest_list_id">
+                                <guestList:showGuestList memberId="${sessionScope.userInfo.getId()}" tagType="ShowNameByOption" />
+                            </select>
+                            <br/>
+                            <button class="btn btn-primary" type="submit" style="margin-top: 10px;">Change</button>
+                        </form>
+                        <h2 class="divider-style" style="margin-top: -1px;text-align: center;"><span>Change Notification template <br></span></h2>
+                        <form action="BookingRecord" method="get">
+                            <input type="hidden" name="action" value="ChangeNotiTemplate">
+                            <input type="hidden" name="memberId" value="${sessionScope.userInfo.getId()}">
+                            <input class="form-control" type="number" style="width: 315px;" placeholder="Id" name="OrderIndex" min="1">
+                            <select name="noti_Template_id">
+                                <notiTemplates:showNotiTemplates tagType="showByOption" />
+                            </select>
+                            <br/>
+                            <button class="btn btn-primary" type="submit" style="margin-top: 10px;">Change</button>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-xl-8" style="padding-left: 43px;">
-                <div style="text-align:center;">
-                    <h2 class="divider-style" style="margin-top: -1px;"><span>Update Booking Record<br></span></h2>
-                </div><div class="form-group pull-right">
-                    <input type="text" class="search form-control" placeholder="What you looking for?">
-                </div>
-                <span class="counter pull-right"></span>
-                <table class="table table-hover table-bordered results">
-                    <thead>
-                        <tr>
-                            <th >#</th>
-                            <th>Venue</th>
-                            <th>Guest List</th>
-                            <th>Notification template</th>
-                            <th >Status</th>
-                        </tr>
-                        <tr class="warning no-result">
-                            <td colspan="4"><i class="fa fa-warning"></i> No result</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Balázs Barta</td>
-                            <td><select class="form-control"><option></option></select></td>
-                            <td><select class="form-control"><option></option></select></td>
-                            <td>Approve</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Dániel Nagy</td>
-                            <td><select class="form-control"><option></option></select></td>
-                            <td><select class="form-control"><option></option></select></td>
-                            <td>Eger</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Szilárd Sebők</td>
-                            <td><select class="form-control"><option></option></select></td>
-                            <td><select class="form-control"><option></option></select></td>
-                            <td>Eger</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Sándor Fekete</td>
-                            <td><select class="form-control"><option></option></select></td>
-                            <td><select class="form-control"><option></option></select></td>
-                            <td>Eger</td>
-                        </tr>
-                    </tbody>
-                </table></div>
         </div>
-    </div>
-</div>
-<%@include file="../../footer.jsp" %>
-<script src="../../assets/js/jquery.min.js"></script>
-<script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../../assets/js/Gruntfile.js"></script>
-<script src="../../assets/js/jquery-3.6.4.min.js"></script>
-<script src="../../assets/js/jquery.maphilight.min.js"></script>
-<script src="../../assets/js/Table-with-search.js"></script>
-</body>
+        <%@include file="../../footer.jsp" %>
+        <script src="../../assets/js/jquery.min.js"></script>
+        <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/Gruntfile.js"></script>
+        <script src="../../assets/js/jquery-3.6.4.min.js"></script>
+        <script src="../../assets/js/jquery.maphilight.min.js"></script>
+        <script src="../../assets/js/Table-with-search.js"></script>
+    </body>
 
 </html>

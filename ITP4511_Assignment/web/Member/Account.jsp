@@ -65,7 +65,7 @@
                                         <div class="card rounded shadow border-0">
                                             <div class="card-body p-5 bg-white rounded">
                                                 <dl class="row">
-                                                    <jsp:useBean id="userInfo" class="ict.bean.MemberBean" scope="session"/>
+                                                    <jsp:useBean id="userInfo" class="ict.bean.User" scope="session"/>
                                                     <dt class="col-sm-2">Name:</dt>
                                                     <dd class="col-sm-9"><jsp:getProperty name="userInfo" property="name" /></dd>
 

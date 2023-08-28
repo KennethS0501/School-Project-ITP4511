@@ -84,7 +84,7 @@
                                     <ict:showVenue tagType="showVenue"/>
                                 </tbody>
                             </table></div>
-                          <form action="#" method="post" enctype="multipart/form-data">
+                          <form action="EditVenue" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="action" value="EditVenue" />
                                 <dt class="col-sm-12" style="font-size: 18px;">Select a Venue Id to change:</dt>
                                 <dd class="col-sm-12" style="font-size: 20px;"><input name="VenueId" type="number" required="true"></dd>

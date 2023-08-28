@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/WEB-INF/tlds/bookingRecords.tld" prefix="bookingRecords" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -77,34 +80,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Balázs Barta</td>
-                                    <td>2023-04-11</td>
-                                    <td>13:00 - 14:00</td>
-                                    <td>Complete</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Dániel Nagy</td>
-                                    <td>Graphic Designer</td>
-                                    <td>Eger</td>
-                                    <td>Eger</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Szilárd Sebők</td>
-                                    <td>Software Developer</td>
-                                    <td>Budapest</td>
-                                    <td>Eger</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Sándor Fekete</td>
-                                    <td>Front-end Developer</td>
-                                    <td>Luxemburg</td>
-                                    <td>Eger</td>
-                                </tr>
+                                <bookingRecords:showBookingRecord memberId="${userInfo.getId()}" tagType="ShowCompleteBookingRecordByTable" />
                             </tbody>
                         </table></div>
                 </div>

@@ -6,7 +6,7 @@ package ict.bean;
 
 /**
  *
- * @author alvin
+ * @author kikit
  */
 public class VenueBean {
 
@@ -15,11 +15,10 @@ public class VenueBean {
     private String type;
     private int capacity;
     private String location;
-    private String desciption;
+    private String description;
     private String person_in_charge;
     private int booking_fee;
     private String status;
-    private String image_path;
 
     public int getId() {
         return id;
@@ -61,12 +60,12 @@ public class VenueBean {
         this.location = location;
     }
 
-    public String getDesciption() {
-        return desciption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesciption(String desciption) {
-        this.desciption = desciption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPerson_in_charge() {
@@ -91,13 +90,5 @@ public class VenueBean {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getImage_path() {
-        return image_path;
-    }
-
-    public void setImage_path(String image_path) {
-        this.image_path = image_path;
     }
 }

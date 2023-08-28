@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/WEB-INF/tlds/guestLists.tld" prefix="guestList" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +21,13 @@
         <link rel="stylesheet" href="../../assets/css/styles.css">
         <link rel="stylesheet" href="../../assets/css/Table-with-search.css">
     </head>
+    <script>
+        var msg = "${param.message}";
 
+        if (msg !== "") {
+            alert(msg);
+        }
+    </script>
     <body>
         <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="height: 27px;background: #cccccc;">
             <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -46,7 +55,7 @@
                     <div class="col-md-8 col-xl-4">
                         <div class="row">
                             <div class="col-lg-4 col-xl-12" style="margin-left: 99px;width: 356px;">
-                                  <div class="list-group">
+                                <div class="list-group">
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../Account.jsp';" style="width: 250px;height: 49px;">Account Details</a>
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../Reminder.jsp';"  style="width: 250px;">Reminder</a>
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../BookingRecordFunction/BookingRecordManagement.jsp';"  style="width: 250px;">Booking Records</a>
@@ -67,45 +76,25 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Guest count</th>
-                                    <th>Create Date</th>
-                                    <th>Delete</th>
                                 </tr>
                                 <tr class="warning no-result">
                                     <td colspan="4"><i class="fa fa-warning"></i> No result</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Balázs Barta</td>
-                                    <td>29</td>
-                                    <td>2023-04-12</td>
-                                    <td><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-bottom: 0px">Delete</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Dániel Nagy</td>
-                                    <td>Graphic Designer</td>
-                                    <td>Eger</td>
-                                    <td><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-bottom: 0px">Delete</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Szilárd Sebők</td>
-                                    <td>Software Developer</td>
-                                    <td>Budapest</td>
-                                    <td><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-bottom: 0px">Delete</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Sándor Fekete</td>
-                                    <td>Front-end Developer</td>
-                                    <td>Luxemburg</td>
-                                    <td><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button" style="margin-bottom: 0px">Delete</button></td>
-                                </tr>
+                            <guestList:showGuestList memberId="${sessionScope.userInfo.getId()}" tagType="ShowNameByTable" />
                             </tbody>
-                        </table></div>
+                        </table>
+                        <dl class="row">
+                            <form action="GuestList" method="post">
+                                <dt class="col-sm-0">Guest List ID:</dt>
+                                <dd class="col-sm-9"><input type="text" name="id"></dd>
+                                <input type="hidden" name="memberId" value="${sessionScope.userInfo.getId()}">
+                                <input type="hidden" name="action" value="DeleteGuestList">
+                                </dl>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="submit" style="width: 213px;text-align: center;">Delete Guest List</button>
+                            </form>
+                    </div>
                 </div>
             </div>
         </div>

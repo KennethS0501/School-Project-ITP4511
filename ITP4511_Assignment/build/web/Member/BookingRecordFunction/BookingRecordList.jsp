@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/WEB-INF/tlds/bookingRecords.tld" prefix="bookingRecords" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -52,70 +55,44 @@
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../BookingRecordFunction/BookingRecordManagement.jsp';"  style="width: 250px;">Booking Records</a>
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../GuestListFunction/GuestListManagement.jsp';"  style="width: 250px;">Guest List Management</a>
                                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="window.location.href = '../CommentSelectBooking.jsp';" style="width: 250px;">Comment</a></div>            
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 col-xl-8" style="padding-left: 43px;height: 657px;">
-                    <div style="text-align:center;">
-                        <h2 class="divider-style" style="margin-top: -1px;"><span>Booking Record List<br></span></h2>
-                    </div><div class="form-group pull-right">
-                        <input type="text" class="search form-control" placeholder="What you looking for?">
+                    <div class="col-md-4 col-xl-8" style="padding-left: 43px;height: 657px;">
+                        <div style="text-align:center;">
+                            <h2 class="divider-style" style="margin-top: -1px;"><span>Booking Record List<br></span></h2>
+                        </div><div class="form-group pull-right">
+                            <input type="text" class="search form-control" placeholder="What you looking for?">
+                        </div>
+                        <span class="counter pull-right"></span>
+                        <table class="table table-hover table-bordered results">
+                            <thead>
+                                <tr>
+                                    <th >#</th>
+                                    <th>Venue</th>
+                                    <th>Booking Date</th>
+                                    <th>Booking Time</th>
+                                    <th >Status</th>
+                                </tr>
+                                <tr class="warning no-result">
+                                    <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <bookingRecords:showBookingRecord memberId="${userInfo.getId()}" tagType="ShowByTable" />
+                            </tbody>
+                        </table>
                     </div>
-                    <span class="counter pull-right"></span>
-                    <table class="table table-hover table-bordered results">
-                        <thead>
-                            <tr>
-                                <th >#</th>
-                                <th>Venue</th>
-                                <th>Booking Date</th>
-                                <th>Booking Time</th>
-                                <th >Status</th>
-                            </tr>
-                            <tr class="warning no-result">
-                                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Balázs Barta</td>
-                                <td>2023-04-11</td>
-                                <td>13:00 - 14:00</td>
-                                <td>Approve</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Dániel Nagy</td>
-                                <td>Graphic Designer</td>
-                                <td>Eger</td>
-                                <td>Eger</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Szilárd Sebők</td>
-                                <td>Software Developer</td>
-                                <td>Budapest</td>
-                                <td>Eger</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Sándor Fekete</td>
-                                <td>Front-end Developer</td>
-                                <td>Luxemburg</td>
-                                <td>Eger</td>
-                            </tr>
-                        </tbody>
-                    </table></div>
+                </div>
             </div>
         </div>
-    </div>
-    <%@include file="../../footer.jsp" %>
-    <script src="../../assets/js/jquery.min.js"></script>
-    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/Gruntfile.js"></script>
-    <script src="../../assets/js/jquery-3.6.4.min.js"></script>
-    <script src="../../assets/js/jquery.maphilight.min.js"></script>
-    <script src="../../assets/js/Table-with-search.js"></script>
-</body>
+        <%@include file="../../footer.jsp" %>
+        <script src="../../assets/js/jquery.min.js"></script>
+        <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/Gruntfile.js"></script>
+        <script src="../../assets/js/jquery-3.6.4.min.js"></script>
+        <script src="../../assets/js/jquery.maphilight.min.js"></script>
+        <script src="../../assets/js/Table-with-search.js"></script>
+    </body>
 
 </html>

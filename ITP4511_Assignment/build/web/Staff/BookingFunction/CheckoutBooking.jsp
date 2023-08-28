@@ -82,7 +82,7 @@
                             </tbody>
                         </table>
                         <form method="post" action="EditBookingOrder">
-                            <jsp:useBean id="userInfo" class="ict.bean.StaffBean" scope="session"/>
+                            <jsp:useBean id="userInfo" class="ict.bean.StaffBean1" scope="session"/>
                             <input type="hidden" name="StaffName" value="<jsp:getProperty name="userInfo" property="name" />" />
                             <input type="hidden" name="action" value="CheckOut"/>
                             <input class="form-control" type="number" name="OrderId" style="width: 291px;" placeholder="ID">

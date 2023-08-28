@@ -4,7 +4,7 @@
  */
 package ict.servlet;
 
-import ict.db.VenueDB;
+import ict.db.VenueDB1;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,7 +29,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 @WebServlet(name = "EditVenueController", urlPatterns = {"/Staff/VenueManagement/EditVenue"})
 public class EditVenueController extends HttpServlet {
 
-    private VenueDB VDB;
+    private VenueDB1 VDB;
     private static final long serialVersionUID = 1L;
     private String defaultPath = "";
     private String name = "default";
@@ -46,7 +46,7 @@ public class EditVenueController extends HttpServlet {
         String dbUser = this.getServletContext().getInitParameter("dbUser");
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-        VDB = new VenueDB(dbUrl, dbUser, dbPassword);
+        VDB = new VenueDB1(dbUrl, dbUser, dbPassword);
         defaultPath = getServletContext().getInitParameter("defaultPath");
 
     }
@@ -328,6 +328,7 @@ public class EditVenueController extends HttpServlet {
                             String fileName = new File(item.getName()).getName();
                             String filePath = uploadPath + "\\" + fileName;
                             File storeFile = new File(filePath);
+                            System.out.println(filePath);
                             DBuploadPath = "../../Image/" + fileName;
                             System.out.println(DBuploadPath);
                             item.write(storeFile);
