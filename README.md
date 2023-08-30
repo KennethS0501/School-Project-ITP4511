@@ -30,4 +30,4 @@ Database: XAMPP database
 
 **Demo Video**
 
-https://drive.google.com/file/d/1UlsjgTnBaqtRzxJtm6K_l9F7jdVbJdUY/view?usp=drive_link
+https://drive.google.com/file/d/1sPm0T2kynBSHG8r_VS4JF_XGNspvM3BN/view?usp=sharing
