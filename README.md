@@ -10,9 +10,9 @@ They can book multiple sessions and venues with a single request. After receivin
 ## Tool:
 JSP (MVC model)
 
-IDE: Glassfish 5.1.0
+IDE: Netbean 16
 
-Netbean 16
+Glassfish 5.1.0
 
 JDK 1.8
 
